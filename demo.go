@@ -27,7 +27,6 @@ func main() {
 		os.Exit(1)
 	}
 	handler.HandleRequestFn = mw.handleRequest
-
 }
 
 // Config the plugin configuration.
