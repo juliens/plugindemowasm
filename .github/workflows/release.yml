@@ -1,4 +1,4 @@
-name: Main
+name: Release
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
 
 jobs:
   main:
-    name: Main Process
+    name: Release process
     runs-on: ubuntu-latest
     env:
       GO_VERSION: 1.21
@@ -60,7 +60,7 @@ jobs:
       - name: Build artifact
         uses: montudor/action-zip@v1
         with:
-          args: zip -qq -r plugin.zip ./plugin.wasm ./.traefik.yml
+          args: zip -qq -r plugin.zip -i plugin.wasm .traefik.yml
 
       - name: Release
         uses: softprops/action-gh-release@v1
