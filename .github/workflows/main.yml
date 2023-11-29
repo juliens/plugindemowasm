@@ -8,9 +8,8 @@ on:
   pull_request:
 
 jobs:
-
   main:
-    name: Main Process
+    name: Main process
     runs-on: ubuntu-latest
     env:
       GO_VERSION: 1.21
@@ -28,14 +27,13 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v2
         with:
-          path: go/src/github.com/${{ github.repository }}
           fetch-depth: 0
 
       # https://github.com/marketplace/actions/cache
       - name: Cache Go modules
         uses: actions/cache@v3
         with:
-          path: ${{ github.workspace }}/go/pkg/mod
+          path: ~/go/pkg/mod
           key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
           restore-keys: |
             ${{ runner.os }}-go-
@@ -50,6 +48,7 @@ jobs:
 
       - name: Check and get dependencies
         run: |
+          go mod download
           go mod tidy
           git diff --exit-code go.mod
           git diff --exit-code go.sum
