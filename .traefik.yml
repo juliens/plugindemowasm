@@ -1,4 +1,4 @@
-displayName: Demo Plugin WASM
+displayName: Demo Plugin WASM with HTTP CALL
 runtime: wasm
 type: middleware
 iconPath: .assets/icon.png
@@ -6,6 +6,7 @@ iconPath: .assets/icon.png
 summary: '[Demo WASM] Add Request Header'
 
 testData:
+  remote: https://www.google.com
   Headers:
     X-Demo: test
     X-URL: '{{URL}}'
